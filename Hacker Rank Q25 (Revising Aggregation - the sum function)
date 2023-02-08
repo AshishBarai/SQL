@@ -1,0 +1,11 @@
+'MS SQL SERVER'
+
+QUESTION:-
+
+Query the total population of all cities in CITY where District is California.
+
+ CODE:-
+
+SELECT SUM(POPULATION)
+FROM CITY
+WHERE DISTRICT > 'CALIFORNIA'
