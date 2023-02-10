@@ -1,0 +1,10 @@
+'MS SQL SERVER'
+
+QUESTION:-
+
+Query the average population for all cities in CITY, rounded down to the nearest integer.
+
+CODE:-
+
+SELECT AVG(population)
+FROM CITY
