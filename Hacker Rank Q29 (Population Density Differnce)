@@ -1,0 +1,11 @@
+'MS SQL SERVER'
+
+QUESTION:-
+
+Query the difference between the maximum and minimum populations in CITY.
+
+
+CODE:-
+
+SELECT MAX(Population) - MIN(Population)
+FROM CITY;
