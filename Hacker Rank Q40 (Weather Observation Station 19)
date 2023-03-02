@@ -1,0 +1,15 @@
+"MS SQL SERVER"
+
+QEUSTION:-
+
+Consider P1(a,b) and P2(a,b) to be two points on a 2D plane where (a,b) are the respective minimum and maximum values of Northern Latitude (LAT_N) 
+and (c,d) are the respective minimum and maximum values of Western Longitude (LONG_W) in STATION.
+
+Query the Euclidean Distance between points P1 and P2 and format your answer to display  decimal digits.
+
+
+CODE:-
+
+SELECT CAST(SQRT((SQUARE(MAX(LAT_N) - MIN(LAT_N))) 
+        + (SQUARE(MAX(LONG_W) - MIN(LONG_W)))) AS DECIMAL (10,4))
+FROM STATION
