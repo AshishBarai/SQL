@@ -1,0 +1,15 @@
+"MS SQL SERVER"
+
+QUESTION:-
+
+Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'.
+
+Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+
+
+CODE:-
+
+SELECT SUM(CITY.POPULATION)
+FROM CITY CITY
+JOIN COUNTRY COUNTRY ON CITY.COuntryCode = COUNTRY.Code
+WHERE COUNTRY.CONTINENT = 'Asia';
