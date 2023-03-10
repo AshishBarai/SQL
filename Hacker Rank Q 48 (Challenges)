@@ -15,9 +15,11 @@ from hackers h
 join challenges ch on h.hacker_id=ch.hacker_id 
 group by h.hacker_id,h.name 
 having count(ch.hacker_id) not in(select distinct count(hacker_id) 
-                                  from challenges ch where hacker_id<>h.hacker_id 
-                                  group by hacker_id having count(hacker_id<(selectmax(x.challenge_count) 
-                                                                              
+from challenges ch 
+where hacker_id<>h.hacker_id 
+group by hacker_id 
+having count(hacker_id)<(select max(x.challenge_count) 
 from (select count(ch.challenge_id)as challenge_count 
-      from challenges ch group by ch.hacker_id) as x)) 
-      order by total_hcount desc,h.hacker_id
+from challenges ch 
+group by ch.hacker_id) as x)) 
+order by total_hcount desc,h.hacker_id;
