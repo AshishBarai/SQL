@@ -1,0 +1,20 @@
+"MS SQL SERVER"
+
+QUESTION:-
+
+P(R) represents a pattern drawn by Julia in R rows. The following pattern represents P(5):
+
+* 
+* * 
+* * * 
+* * * * 
+* * * * *
+Write a query to print the pattern P(20).
+
+CODE:-
+
+WITH pattern AS ( SELECT 1 AS row_num, CAST('*' AS VARCHAR(MAX)) AS pattern 
+                 UNION ALL SELECT row_num + 1, CONCAT(pattern, ' *') 
+                 FROM pattern WHERE row_num < 20 ) SELECT pattern 
+                 FROM pattern 
+                 ORDER BY row_num;
