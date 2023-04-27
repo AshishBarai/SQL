@@ -1,0 +1,12 @@
+PAGE WITH NI LIKES [FACEBOOK SQL INTERVIEW QUESTION]
+ 
+Question:-
+Assume you're given the tables below about Facebook Page and Page likes (as in "Like a Facebook Page").
+Write a query to return the IDs of the Facebook pages which do not possess any likes. The output should be sorted in ascending order.
+
+Code:-
+
+SELECT p.page_id
+FROM  pages p
+LEFT JOIN page_likes l ON l.page_id = p.page_id
+WHERE l.page_id IS NULL;
