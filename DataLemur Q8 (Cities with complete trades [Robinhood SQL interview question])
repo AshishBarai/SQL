@@ -1,0 +1,18 @@
+Cities with completed trades [Robinhood SQL interview Question]
+
+Question:-
+Assume you're given the tables containing completed trade orders and user details in a Robinhood trading system.
+
+Write a query to retrieve the top three cities that have the highest number of completed trade orders listed in 
+descending order. Output the city name and the corresponding number of completed trade orders.
+
+
+CODE:-
+
+SELECT u.city,COUNT(t.status) AS total_orders
+FROM trades t
+JOIN users u ON u.user_id = t.user_id
+WHERE t.status = 'Completed'
+GROUP BY u.city
+ORDER BY total_orders DESC
+LIMIT 3;
