@@ -1,0 +1,20 @@
+Pharmacy Analytics (Part 3) [CVS health SQL interview Question]
+
+Question:-
+
+CVS Health is trying to better understand its pharmacy sales, 
+and how well different products are selling.
+
+Write a query to find the total drug sales for each manufacturer. Round your answer to the closest million,
+and report your results in descending order of total sales.
+
+Because this data is being directly fed into a dashboard which is being seen by business stakeholders, 
+format your result like this: "$36 million".
+
+Code:-
+
+SELECT manufacturer,
+      CONCAT('$',ROUND(SUM(total_sales) / 1000000), ' million') AS sales_mil
+FROM pharmacy_sales
+GROUP BY manufacturer
+ORDER BY SUM(total_sales) DESC;
