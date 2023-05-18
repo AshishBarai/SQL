@@ -1,0 +1,32 @@
+Sending vs. Opening Snaps [Snapchat SQl Interview Question]
+
+Question :-
+
+Assume you're given tables with information on Snapchat users, including their
+ages and time spent sending and opening snaps.
+
+Write a query to obtain a breakdown of the time spent sending vs. opening snaps as a 
+percentage of total time spent on these activities grouped by age group. Round the percentage to 2 decimal places in the output.
+
+Notes:
+
+*Calculate the following percentages:
+  >time spent sending / (Time spent sending + Time spent opening)
+  >Time spent opening / (Time spent sending + Time spent opening)
+*To avoid integer division in percentages, multiply by 100.0 and not 100.
+
+Code:-
+
+SELECT
+ t2.age_bucket,
+    ROUND(100.0*  (SUM(t1.time_spent) FILTER (WHERE activity_type = 'send')) / 
+      (SUM(t1.time_spent) FILTER (WHERE activity_type = 'send')+
+      SUM(t1.time_spent) FILTER (WHERE activity_type = 'open')),2) AS send_perc,
+    ROUND(100.0*  (SUM(t1.time_spent) FILTER (WHERE activity_type = 'open')) / 
+      (SUM(t1.time_spent) FILTER (WHERE activity_type = 'send')+
+      SUM(t1.time_spent) FILTER (WHERE activity_type = 'open')),2) AS send_perc
+FROM activities AS t1
+LEFT JOIN age_breakdown AS t2 
+    ON t1.user_id = t2.user_id 
+WHERE t1.activity_type IN ('open','send')
+GROUP BY t2.age_bucket;
