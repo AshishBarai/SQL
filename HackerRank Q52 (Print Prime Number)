@@ -1,0 +1,23 @@
+'My SQL SERVER'
+Question:-
+Write a query to print all prime numbers less than or equal to 1000 . 
+Print your result on a single line, and use the ampersand (&) character as your 
+separator (instead of a space).
+
+Code:-
+
+DECLARE @R as Integer;
+SET @R = 1000;
+DECLARE @tbl table(number integer);
+
+WHILE @R >=2 
+    BEGIN
+        INSERT INTO @tbl VALUES(@R);
+        SET @R = @R - 1;
+    END
+
+SELECT STRING_AGG(number,'&') WITHIN GROUP (ORDER BY number)
+FROM @tbl tbl1
+WHERE NOT EXISTS(SELECT 1
+FROM @tbl tbl2
+WHERE tbl2.number < tbl1.number AND (tbl1.number % tbl2.number) = 0)
