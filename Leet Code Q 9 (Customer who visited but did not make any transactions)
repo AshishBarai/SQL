@@ -1,0 +1,41 @@
+'MySQL'
+
+LeetCode Q 9 (Customer who visited but did not make any transactions)
+
+Question:-
+
+Table: Visits
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| visit_id    | int     |
+| customer_id | int     |
++-------------+---------+
+visit_id is the primary key for this table.
+This table contains information about the customers who visited the mall.
+ 
+
+Table: Transactions
+
++----------------+---------+
+| Column Name    | Type    |
++----------------+---------+
+| transaction_id | int     |
+| visit_id       | int     |
+| amount         | int     |
++----------------+---------+
+transaction_id is the primary key for this table.
+This table contains information about the transactions made during the visit_id.
+ 
+
+Write a SQL query to find the IDs of the users who visited without making any transactions and the number of times they made these types of visits.
+
+Code:-
+
+SELECT t1.customer_id,COUNT(t1.visit_id) AS count_no_trans
+FROM visits AS t1
+LEFT JOIN transactions AS t2 ON t1.visit_id = t2.visit_id
+WHERE t2.transaction_id IS NULL
+GROUP BY t1.customer_id;
+
