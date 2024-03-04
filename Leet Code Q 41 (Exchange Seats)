@@ -1,0 +1,34 @@
+LeetCode
+
+Exchange Seats
+
+Question:-
+
+Table: Seat
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| student     | varchar |
++-------------+---------+
+id is the primary key (unique value) column for this table.
+Each row of this table indicates the name and the ID of a student.
+id is a continuous increment.
+ 
+
+Write a solution to swap the seat id of every two consecutive students. If the number of students is odd, the id of the last student is not swapped.
+
+Return the result table ordered by id in ascending order.
+
+Solution:-
+
+Select 
+	Case
+	When id = (Select MAX(id) From Seat) And id % 2 = 1 Then id
+	When id % 2 = 0 Then id - 1
+	Else id + 1
+	End AS id,
+	Student
+From Seat
+Order By id ASC;
