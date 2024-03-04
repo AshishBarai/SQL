@@ -1,0 +1,26 @@
+LeetCode
+
+Consecutive Numbers
+
+Question:- 
+
+Table: Logs
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| num         | varchar |
++-------------+---------+
+In SQL, id is the primary key for this table.
+id is an autoincrement column.
+ 
+
+Find all numbers that appear at least three times consecutively.
+
+Code :-
+
+SELECT DISTINCT(a.num) AS ConsecutiveNums
+FROM logs AS a
+INNER JOIN logs AS b ON a.id = b.id + 1 AND a.num = b.num
+INNER JOIN logs AS c ON b.id = c.id + 1 AND b.num = c.num;
