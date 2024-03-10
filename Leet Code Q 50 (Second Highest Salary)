@@ -19,8 +19,6 @@ If there is no second highest salary, return null (return None in Pandas).
 
 Solution: -
 
-SELECT (
-SELECT Salary
-FROM Employee
-ORDER BY Salary DESC
-LIMIT 1 OFFSET 1) AS SecondHighestSalary;
+SELECT IFNULL(
+(SELECT MAX(Salary) FROM Employee
+WHERE Salary < (SELECT MAX(Salary) FROM Employee)),NULL) AS SecondHighestSalary;
