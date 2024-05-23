@@ -1,0 +1,10 @@
+1. NOT NULL - 
+If we specify a field in a table to be NOT NULL. Then the field will never accept null values. That is, you will be not allowed to insert a new row in the table without specify any value to this field.
+For example, the below query creates a table student with the field ID and Name AS NOT NULL. That is, we are bound to specify values for these two field every time we wish to insert a new row.
+
+CREATE TABLE Student
+(
+ID int(10) NOT NULL,
+NAME varchar(10) NOT NULL,
+ADDRESS varchar(20)
+);
