@@ -1,0 +1,67 @@
+CREATE TABLE events(
+ID int,
+event VARCHAR(255),
+year INT,
+GOLD varchar(255),
+SILVER varchar(255),
+BRONZE varchar(255)
+)
+about the abouve query: -
+
+This statement creates a table named events with the following columns:
+> ID (integer): A unique identifier for each event.
+> event (variable character of length 255): The name of the event (e.g., '100m', '200m', '500m').
+> YEAR (integer): The year the event took place.
+> GOLD (variable character of length 255): The name of the gold medalist.
+> SILVER (variable character of length 255): The name of the silver medalist.
+> BRONZE (variable character of length 255): The name of the bronze medalist.
+
+
+delete from events;
+about the abouve query: -
+This statement deletes all existing rows from the events table. This is useful if you want to reset the table before inserting new data.
+
+
+INSERT INTO events VALUES (1,'100m',2016,'Amthhew Mcgarray','donal','barbara');
+INSERT INTO events VALUES (2,'200m',2016, 'Nichole','Alvaro Eaton','janet Smith');
+INSERT INTO events VALUES (3,'500m',2016, 'Charles','Nichole','Susana');
+INSERT INTO events VALUES (4,'100m',2016, 'Ronald','maria','paula');
+INSERT INTO events VALUES (5,'200m',2016, 'Alfred','carol','Steven');
+INSERT INTO events VALUES (6,'500m',2016, 'Nichole','Alfred','Brandon');
+INSERT INTO events VALUES (7,'100m',2016, 'Charles','Dennis','Susana');
+INSERT INTO events VALUES (8,'200m',2016, 'Thomas','Dawn','catherine');
+INSERT INTO events VALUES (9,'500m',2016, 'Thomas','Dennis','paula');
+INSERT INTO events VALUES (10,'100m',2016, 'Charles','Dennis','Susana');
+INSERT INTO events VALUES (11,'200m',2016, 'jessica','Donald','Stefeney');
+INSERT INTO events VALUES (12,'500m',2016,'Thomas','Steven','Catherine');
+
+about the abouve query: -
+These statements insert rows into the events table. Each INSERT statement adds a new row with specific values for each column. For example:
+
+> The first INSERT statement adds an event with ID 1, named '100m', held in 2016, with 'Amthhew Mcgarray' winning gold, 'donald' winning silver, and 'barbara' winning bronze.
+> This pattern continues for each subsequent INSERT statement, adding new rows with different event details.
+
+
+
+ Question : Write a query to find number of gold medal per swimmer of swimmers who won only gold medals
+
+--using subquery
+  
+  SELECT gold as names,count(1) as no_of_medals
+  from events
+  WHERE gold NOT IN (SELECT silver FROM events UNION ALL SELECT bronze FROM events)
+  GROUP BY gold
+
+--using having cte
+  
+  with cte AS(
+  SELECT gold as player_name, 'gold' as medal_type from events
+  UNION ALL 
+  SELECT silver as player_name, 'silver' as medal_type from events
+  UNION ALL 
+  SELECT bronze as player_name, 'bronze' as medal_type from events
+  )
+SELECT player_name, COUNT(1) AS no_of_medals
+FROM cte
+GROUP BY player_name
+HAVING COUNT(DISTINCT medal_type) = 1 AND MAX(medal_type) = 'gold';
