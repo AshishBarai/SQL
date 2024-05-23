@@ -1,0 +1,21 @@
+# How to specify constraints
+
+We can specify constraints at the times fo creating the table using CREATE TABLE statement. We can also specify the constraints after creating a table using ALTER TABLE statement.
+
+Syntax:
+
+Below is the syntax to create constraints using CREATE TABLE statement at the time of creating the table.
+
+CREATE TABLE sample_table
+(
+column1 data_type(size) constraint_name;
+column2 data_type(size) constraint_name;
+.
+.
+.
+columnN data_type(size) constraint_name;
+);
+
+sample_table: Name of the table you have created.
+data_type: Type of data that can be stored in the field.
+constraint_name: Name of the constraint. for example- NOT NULL, UNIQUE, PRIMARY KEY etc.
