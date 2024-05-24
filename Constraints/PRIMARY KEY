@@ -1,0 +1,13 @@
+# PRIMARY KEY
+
+Primary key is a field which uniquely identifies each row in the table. If a field in a table as primary key, then the field will not be able to contain NULL values as well as all the rows should have unique vales for this field. So, in other words we can says that this is the combination of NOT NULL & UNIQUE constraints.
+
+A table can have only one fiel as primary key. Below query will create a table name Student andd specific the field ID as a primary key.
+
+CREATE TABLE student
+(
+ID int(10) NOT NULL UNIQUE
+name varchar(100) NOT NULL
+address (100)
+PRIMARY KEY (ID)
+);
