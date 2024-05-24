@@ -1,0 +1,12 @@
+# Unique
+
+This constraint helps to uniquely idnetify each row in the table. i.e. for a particular column, all the rows should have unique values. We can have more than ine UNIQUE columns in a table.
+
+For example, the below query creates a table Student where the filed ID is specified as UNIQUE. i.e. no two students can have the came ID.
+
+CREATE TABLE student
+(
+ID int(10) NOT NULL UNIQUE
+NAME varchar(100) NOT NULL,
+address varchar(100)
+);
