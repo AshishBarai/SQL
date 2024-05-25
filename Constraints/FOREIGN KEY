@@ -1,0 +1,55 @@
+# FOREIGN KEY CONSTRAINTS
+
+Foreign key is a field is a table uniquely identifies each row of a another table. That is, this field points to primary key of another table. This usually creates a kind of link between the tables.
+
+Consider the two tables as shown below:
+
+ORDERS
+O_ID	ORDER_NO	C_ID
+1     	2253	   3
+2	      3325	   3
+3     	4521  	 2
+4      	8532	   1
+
+CUSTOMERS
+C_ID	  NAME	  ADDRESS
+1	     RAMESH	   DELHI
+2	     SURESH	   NOIDA
+3	     DHARMESH	 GURGAON
+
+As we cab see clearly that the field C_ID in orders is the primary KEY in Customers table,
+i.e. it uniquely identifies each row in the Customers table. Therefore, it is a Foreign KEY in Orders table
+
+SYNTAX:
+
+CREATE TABLE Orders
+(
+O_ID int NOT NULL,
+ORDER_NO int NOT NULL,
+C_ID int,
+PRIMARY KEY (O_ID),
+FOREIGN KEY (C_ID) REFERENCES Customers(C_ID)
+)
+
+1) CHECK -
+Using the CHECK constraint we can specify a condition for a field, which should be satisfies at the time of entering values for this field.
+
+For example, the below query creates a table Student and specifies the condition for the field AGE as (AGE >= 18 ). That is, the user will not be allowed to enter any record in the table with AGE < 18.
+
+CREATE TABLE Student
+(
+ID int(6) NOT NULL,
+NAME varchar(10) NOT NULL,
+AGE int NOT NULL CHECK (AGE >= 18)
+);
+
+2) DEFAULT - 
+This constraint is used to provide a default value for the fields. That is, if at the time of entering new records in the table if the user does not specify any value for these fields then the default value will be assigned to them. 
+For example, the below query will create a table named Student and specify the default value for the field AGE as 18. 
+
+CREATE TABLE Student
+(
+ID int(6) NOT NULL,
+NAME varchar(10) NOT NULL,
+AGE int DEFAULT 18
+);
