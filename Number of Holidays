@@ -1,0 +1,47 @@
+# Number of Holidays
+Q : Write a SQL to find business days between create date and resolved date by excluding weekends and holidays.
+first creating a table to the query: - 
+
+CREATE TABLE tickets
+(
+ticket_id VARCHAR(20),
+create_date DATE,
+resolved_date DATE
+);
+>Creating a new table named as TICKETS
+
+DELETE FROM tickets;
+>This statement deletes all existing rows from the 'tickets' table. This is useful for resetting the table before inserting new data.
+
+
+INSERT INTO tickets VALUES
+(1,'2022-08-01','2022-08-03')
+,(2,'2022-08-01','2022-08-12')
+,(3,'2022-08-01','2022-08-16');
+> Inserting Data into the 'tickets' Table
+
+
+CREATE TABLE holidays
+(
+holiday_date date,
+reason VARCHAR(100)
+);
+> Create a new table named as HOLIDAYS
+
+DELETE FROM holidays;
+>Deleting All Rows from the 'holidays' Table
+
+
+INSERT INTO holidays VALUES
+('2022-08-11','Rakhi'),
+('2022-08-15','Independence day');
+>Inserting data into the 'tickets' table
+
+
+
+SELECT *,
+(datediff(resolved_date, create_date) - (week(resolved_date) - week(create_date)) * 2) - no_of_holidays AS business_days
+FROM (select ticket_id, create_date, resolved_date, count(holiday_date) AS no_of_holidays
+from tickets
+LEFT JOIN holidays on holiday_date between create_date and resolved_date
+GROUP BY ticket_id, create_date, resolved_date) A
