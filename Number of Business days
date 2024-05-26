@@ -1,4 +1,4 @@
-# Number of Holidays
+# Number of Business 
 Q : Write a SQL to find business days between create date and resolved date by excluding weekends and holidays.
 first creating a table to the query: - 
 
