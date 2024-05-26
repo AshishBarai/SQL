@@ -38,6 +38,7 @@ INSERT INTO holidays VALUES
 >Inserting data into the 'tickets' table
 
 
+SOLUTION:- 
 
 SELECT *,
 (datediff(resolved_date, create_date) - (week(resolved_date) - week(create_date)) * 2) - no_of_holidays AS business_days
