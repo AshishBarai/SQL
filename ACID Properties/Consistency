@@ -1,0 +1,14 @@
+ACID Properties in SQL
+
+The ACID properties are a set of principles that ensure reliable processing of database transactions.
+ACID stands for Atomicity, Consistency, Isolation, and Durability.
+
+# Consistency
+Consistency ensures that a transaction brings the database from one valid state to another, maintaining 
+database integrity. This means any data written to the database must comply with all predefined rules, 
+including constraints, cascades, triggers, and any combination of database rules.
+
+Example:
+Continuing with the bank transfer, consistency ensures that the sum of the balances in both accounts remains 
+unchanged by the transaction. If Account A has $500 and Account B has $300 before the transfer, after transferring 
+$100 from A to B, the total amount should still be $800.
