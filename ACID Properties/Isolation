@@ -1,0 +1,15 @@
+ACID Properties in SQL
+
+The ACID properties are a set of principles that ensure reliable processing of database transactions.
+ACID stands for Atomicity, Consistency, Isolation, and Durability.
+
+# Isolation
+Isolation ensures that the operations of one transaction are isolated from those of other transactions. 
+This means the intermediate state of a transaction is invisible to other transactions until the transaction is complete. 
+Isolation levels can vary, allowing trade-offs between performance and strict isolation.
+
+Example:
+If two transactions occur simultaneously—one transferring money from Account A to Account B and another 
+transferring from Account B to Account C—each transaction should not interfere with the other. The operations 
+in one transaction must appear isolated to the operations in the other, preventing scenarios where both transactions 
+see an incomplete state of the other.
