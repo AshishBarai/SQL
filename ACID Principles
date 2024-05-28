@@ -1,0 +1,3 @@
+ACID Properties in SQL
+
+The ACID properties are a set of principles that ensure reliable processing of database transactions. ACID stands for Atomicity, Consistency, Isolation, and Durability.
