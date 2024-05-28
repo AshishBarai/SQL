@@ -1,0 +1,16 @@
+ACID Properties in SQL
+
+The ACID properties are a set of principles that ensure reliable processing of database transactions.
+ACID stands for Atomicity, Consistency, Isolation, and Durability.
+
+# Atomicity
+Atomicity ensures that a transaction is treated as a single unit of work, meaning either all operations
+within the transaction are completed successfully, or none of them are. If any part of the transaction 
+fails, the entire transaction is rolled back, leaving the database in its previous state. This guarantees 
+that partial transactions do not occur, preventing data corruption.
+
+Example:
+Consider a bank transfer where $100 is moved from Account A to Account B. This transaction involves two 
+operations: deducting $100 from Account A and adding $100 to Account B. Atomicity ensures that either both 
+operations succeed or both fail. If the deduction from Account A succeeds but the addition to Account B fails,
+the entire transaction is rolled back, ensuring no money is lost or incorrectly recorded.
