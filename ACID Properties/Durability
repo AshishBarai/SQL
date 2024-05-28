@@ -1,0 +1,14 @@
+ACID Properties in SQL
+
+The ACID properties are a set of principles that ensure reliable processing of database transactions.
+ACID stands for Atomicity, Consistency, Isolation, and Durability.
+
+Durability
+Durability ensures that once a transaction is committed, it will remain so, even in the event of a system 
+failure. This means the results of the transaction are permanently recorded in the database. Durability is 
+typically achieved through mechanisms like write-ahead logging and checkpoints.
+
+Example:
+If the bank transfer is completed and the transaction is committed, the changes (the $100 deducted from Account 
+A and added to Account B) must be permanently recorded. Even if a power failure occurs immediately after the transaction 
+commits, the changes should not be lost.
