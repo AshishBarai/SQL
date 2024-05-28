@@ -1,0 +1,43 @@
+--Write a SQL query to find total number of people present inside the hopital
+
+# Table Structure
+CREATE TABLE hospital
+(
+imp int,
+action varchar(100),
+time datetime
+);
+
+# Clearnig Existing data
+DELETE FROM hospital;
+
+
+# Data Inserted
+ The data inserted into the table logs when each individual entered or exited the hospital:
+
+insert into hospital values ('1', 'in', '2019-12-22 09:00:00');
+insert into hospital values ('1', 'out', '2019-12-22 09:15:00');
+insert into hospital values ('2', 'in', '2019-12-22 09:00:00');
+insert into hospital values ('2', 'out', '2019-12-22 09:15:00');
+insert into hospital values ('2', 'in', '2019-12-22 09:30:00');
+insert into hospital values ('3', 'out', '2019-12-22 09:00:00');
+insert into hospital values ('3', 'in', '2019-12-22 09:15:00');
+insert into hospital values ('3', 'out', '2019-12-22 09:30:00');
+insert into hospital values ('3', 'in', '2019-12-22 09:45:00');
+insert into hospital values ('4', 'in', '2019-12-22 09:45:00');
+insert into hospital values ('5', 'out', '2019-12-22 09:40:00');
+
+
+Solution WITH CTE:
+
+with cte as
+(
+select imp,
+MAX(CASE WHEN action = 'in' THEN TIME END) AS intime,
+MAX(CASE WHEN action = 'out' THEN TIME END) AS outime,
+FROM hospital
+GROUP BY imp
+)
+SELECT *
+FROM cte
+WHERE intime > outime OR outime IS NULL;
