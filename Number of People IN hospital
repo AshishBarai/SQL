@@ -28,7 +28,7 @@ insert into hospital values ('4', 'in', '2019-12-22 09:45:00');
 insert into hospital values ('5', 'out', '2019-12-22 09:40:00');
 
 
-Solution WITH CTE:
+Solution 1 WITH CTE:
 
 with cte as
 (
@@ -41,3 +41,30 @@ GROUP BY imp
 SELECT *
 FROM cte
 WHERE intime > outime OR outime IS NULL;
+
+SOLUTION 2 WITH HAVING:
+SELECT imp,
+MAX(CASE WHEN ACTION = 'in' THEN TIME END) AS intime,
+MAX(CASE WHEN ACTION = 'out' THEN TIME END) AS outime
+from hospital
+GROUP BY imp
+HAVing MAX(CASE WHEN ACTION = 'in' THEN TIME END) > MAX(CASE WHEN ACTION = 'out' THEN TIME END) 
+OR MAX(CASE WHEN ACTION = 'out' THEN TIME END) is null;
+
+SOLUTOIN 3 :
+with latest_time as
+(
+select imp, max(time) as max_latest_time 
+from hospital
+group by imp
+),
+intime as
+(
+select imp, max(time) as max_intime
+from hospital
+where action = 'in'
+group by imp
+)
+select *
+from latest_time lit
+inner join intime it on lit.imp = it.imp AND max_latest_time = max_intime;
