@@ -1,0 +1,63 @@
+SQL Table and Data Insertion
+First, we create an employee table and insert some data into it:
+
+CREATE TABLE employee(
+    emp_id INT,
+    emp_name VARCHAR(20),
+    dept_id INT,
+    salary INT
+);
+
+INSERT INTO employee VALUES (1, 'Ankit', 100, 10000);
+INSERT INTO employee VALUES (2, 'Mohit', 100, 15000);
+INSERT INTO employee VALUES (3, 'Vikas', 100, 10000);
+INSERT INTO employee VALUES (4, 'Rohit', 100, 5000);
+INSERT INTO employee VALUES (5, 'Mudit', 200, 12000);
+INSERT INTO employee VALUES (6, 'Agam', 200, 12000);
+INSERT INTO employee VALUES (7, 'Sanjay', 200, 9000);
+INSERT INTO employee VALUES (8, 'Ashish', 200, 5000);
+
+# Using RANK()
+The RANK() function assigns a unique rank to each row within the result set based on the specified order. If there are ties, the next rank(s) will be skipped.
+
+Query:
+SELECT *, 
+RANK() OVER (ORDER BY salary DESC) AS rank 
+FROM employee;
+
+result:
+emp_id	emp_name	dept_id	salary	rank
+2	      Mohit	     100	   15000	1
+5	      Mudit	     200	   12000	2
+6	      Agam	     200	   12000	2
+1	      Ankit      100	   10000	4
+3	      Vikas	     100	   10000	4
+7	      Sanjay	   200	   9000	  6
+4     	Rohit	     100	   5000	  7
+8	      Ashish	   200	   5000	  7
+
+Explanation: Using RANK()
+The RANK() function assigns a unique rank to each row within the result set based on the specified order. If there are ties, the next rank(s) will be skipped.
+
+
+# RANK with PARTITION function
+  
+QUERY:
+SELECT *, 
+RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rank 
+FROM employee;
+
+RESULT:
+emp_id	emp_name	dept_id	salary	rank
+2	      Mohit	     100	  15000 	1
+1	      Ankit	     100	  10000	  2
+3	      Vikas	     100	  10000	  2
+4	      Rohit	     100	  5000	  4
+5	      Mudit	     200	  12000	  1
+6	      Agam	     200	  12000	  1
+7	      Sanjay	   200  	9000	  3
+8	      Ashish	   200  	5000	  4
+
+Explanation: Ranking Functions With Partitioning by Department
+Using RANK() with Partition
+The RANK() function can be used with partitioning to reset the ranking for each partition (e.g., each department).
