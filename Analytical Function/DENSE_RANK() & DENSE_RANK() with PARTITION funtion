@@ -1,0 +1,57 @@
+SQL Table and Data Insertion
+First, we create an employee table and insert some data into it:
+
+CREATE TABLE employee(
+    emp_id INT,
+    emp_name VARCHAR(20),
+    dept_id INT,
+    salary INT
+);
+
+INSERT INTO employee VALUES (1, 'Ankit', 100, 10000);
+INSERT INTO employee VALUES (2, 'Mohit', 100, 15000);
+INSERT INTO employee VALUES (3, 'Vikas', 100, 10000);
+INSERT INTO employee VALUES (4, 'Rohit', 100, 5000);
+INSERT INTO employee VALUES (5, 'Mudit', 200, 12000);
+INSERT INTO employee VALUES (6, 'Agam', 200, 12000);
+INSERT INTO employee VALUES (7, 'Sanjay', 200, 9000);
+INSERT INTO employee VALUES (8, 'Ashish', 200, 5000);
+
+# Using DENSE_RANK() 
+The DENSE_RANK() function works similarly to RANK(), but it does not skip ranks in case of ties.
+
+#QUERY
+SELECT *, 
+       RANK() OVER (ORDER BY salary DESC) AS rank, 
+       DENSE_RANK() OVER (ORDER BY salary DESC) AS dense_rank 
+FROM employee;
+
+emp_id	emp_name	dept_id	salary	rank	dense_rank
+2        Mohit    100     15000    1    1
+5        Mudit    200     12000    2    2
+6        Agam     200     12000    2    2
+1        Ankit    100     10000    4    3
+3        Vikas    100     10000    4    3
+7        Sanjay   200     9000     6    4
+4        Rohit    100     5000     7    5
+8        Ashish   200     5000     7    5
+
+# DENSE_RANK() with Partition:
+The DENSE_RANK() function can be used with partitioning to reset the ranking for each partition (e.g., each department).
+
+Query:
+SELECT *, 
+      RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC), 
+      DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) 
+FROM employee;
+
+Result:
+emp_id	emp_name	dept_id	salary	rank	dense_rank
+2       Mohit      100     15000   1      1
+1       Ankit      100     10000   2      2
+3       Vikas      100     10000   2      2
+4       Rohit      100     5000    4      3
+5       Mudit      200     12000   1      1
+6       Agam       200     12000   1      1
+7       Sanjay     200     9000    3      2
+8       Ashish     200     5000    4      3
