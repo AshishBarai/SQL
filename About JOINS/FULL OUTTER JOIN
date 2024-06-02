@@ -1,0 +1,13 @@
+About FULL OUTTER JOIN
+
+Query:
+
+SELECT *,
+FROM table1_name AS t1
+FULL OUTTER JOIN table2_name AS t2 ON t1.id = t2.id
+
+EXPLANATION:
+
+A full outer join returns all rows when there is a match in either table. 
+If there is no match, NULL values are returned for the columns that do not have a
+match in the other table.
