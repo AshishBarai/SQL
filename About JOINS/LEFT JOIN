@@ -1,0 +1,11 @@
+About LEFT Join
+
+SELECT *,
+FROM table1_name as  t1
+INNER JOIN table2_name as t2 on t1.id = t2.id
+
+EXPLAINATION:
+
+A left join returns all rows from the left table (table1_name), and the matched rows 
+from the right table (table2_name). If no match is found, NULL values are returned for columns 
+from the right table.
