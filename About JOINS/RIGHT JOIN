@@ -1,0 +1,14 @@
+About RIGHT JOIN or RIGHT OUTTER JOIN
+
+Query:
+
+SELECT *,
+FROM table1_name AS t1
+RIGHT JOIN table2_name AS t2 on t1.id = t2.id;
+
+Explanation:
+
+A right join returns all rows from the right table (table2_name), 
+and the matched rows from the left table (table1_name). If no match 
+is found, NULL values are returned for columns from the left table.
+ 
