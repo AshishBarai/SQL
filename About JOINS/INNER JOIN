@@ -1,0 +1,9 @@
+About Inner Join
+
+SELECT *,
+FROM table1_name as  t1
+INNER JOIN table2_name as t2 on t1.id = t2.id
+
+EXPLAINATION:
+
+Inner join only returns the values which have matching values in both the tables.
