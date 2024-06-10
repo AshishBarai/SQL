@@ -1,0 +1,64 @@
+Creating a student table:
+
+CREATE TABLE students
+(
+studentid int NULL,
+student_name varchar (255) NULL,
+subject varchar (255) NULL,
+marks int NULL,
+test_id int NULL,
+test_date date NULL
+);
+
+Explanation:
+
+> CREATE TABLE students: This statement creates a new table named students.
+> Inside the parentheses, we define the columns and their data types:
+> studentid int NULL: An integer column that can store NULL values, representing 
+the student ID.
+> student_name varchar(255) NULL: A variable character column with a maximum length 
+of 255 characters that can store NULL values, representing the student's name.
+> subject varchar(255) NULL: A variable character column with a maximum length of 255 
+characters that can store NULL values, representing the subject.
+> marks int NULL: An integer column that can store NULL values, representing the marks 
+obtained by the student.
+> test_id int NULL: An integer column that can store NULL values, representing the test ID.
+> test_date date NULL: A date column that can store NULL values, representing the date of 
+the test.
+
+Deleting all the data from student table
+DELETE FROM students;
+
+Explanation:
+> This command deletes all rows from the students table. It does not delete the table itself, 
+only the data within it. After this command, the students table will be empty.
+
+Inseting data into student table:
+insert into students values (2,'Max Ruin','Subject1',63,1,'2022-01-02');
+insert into students values (3,'Arnold','Subject1',95,1,'2022-01-02');
+insert into students values (4,'Krish Star','Subject1',61,1,'2022-01-02');
+insert into students values (5,'John Mike','Subject1',91,1,'2022-01-02');
+insert into students values (4,'Krish Star','Subject2',71,1,'2022-01-02');
+insert into students values (3,'Arnold','Subject2',32,1,'2022-01-02');
+insert into students values (5,'John Mike','Subject2',61,2,'2022-11-02');
+insert into students values (1,'John Deo','Subject2',60,1,'2022-01-02');
+insert into students values (2,'Max Ruin','Subject2',84,1,'2022-01-02');
+insert into students values (2,'Max Ruin','Subject3',29,3,'2022-01-03');
+insert into students values (5,'John Mike','Subject3',98,2,'2022-11-02');
+
+Explanation:
+> Each insert into students values (...) command inserts a new row into the students table.
+> The values in each row correspond to the columns defined in the students table schema:
+> studentid: The ID of the student.
+> student_name: The name of the student.
+> subject: The subject in which the marks were obtained.
+> marks: The marks obtained by the student in the subject.
+> test_id: The ID of the test.
+> test_date: The date when the test was conducted.
+> Inserted Data:
+
+The data includes multiple rows for each student, with different subjects and test dates, representing the marks obtained by the students in various subjects and tests.
+For example:
+> Student with studentid 2 (Max Ruin) has marks for Subject1, Subject2, and Subject3 on different test dates.
+> Student with studentid 5 (John Mike) has marks for Subject1, Subject2, and Subject3, some on the same test date and some on different test dates.
+
