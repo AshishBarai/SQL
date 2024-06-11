@@ -62,3 +62,19 @@ For example:
 > Student with studentid 2 (Max Ruin) has marks for Subject1, Subject2, and Subject3 on different test dates.
 > Student with studentid 5 (John Mike) has marks for Subject1, Subject2, and Subject3, some on the same test date and some on different test dates.
 
+
+Q : Write a SQL query to get the list of students who scored above the average marks in 
+  each subject
+
+Solution :
+
+WITH avg_cte as
+(
+SELECT subject, AVG(marks) AS avg_marks
+FROM students
+GROUP BY subject
+)
+SELECT a.*, ac.*
+FROM students as a
+INNER JOIN avg_cte as ac on a.subject = ac.subject
+WHERE a.marks > ac.avg_marks;
