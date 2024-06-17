@@ -5,5 +5,11 @@ data is already cleanded
 
 1. using inner join:
 
+In innner join we get the records which are common on both the tables
+
 Qusetion: Total revenue lost by return order ?
 
+select city, sum(sales)
+from superstore_order AS so
+INNER JOIN  `return` AS r ON so.order_id = r.order_id
+group by city;
