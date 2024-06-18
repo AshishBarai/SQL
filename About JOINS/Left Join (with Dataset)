@@ -7,6 +7,8 @@ data was already cleanded
 
 All the records from the left side of the table, and all the matching records from the right side of the table.
 
+Q : # Sales of orders which are not returned
+
 select city, sum(sales)
 from superstore_order as so
 Left join `return` as r ON so.Order_ID = r.Order_ID
