@@ -1,0 +1,14 @@
+Data Set Link(From Ankit Bansal Youtube): https://drive.google.com/drive/folders/1Dc81McsB4lp1JUIwssDmmOaw6Z7rBK8T
+
+imported the data into MySQL workbench
+data was already cleanded
+
+2. Left Join
+
+All the records from the left side of the table, and all the matching records from the right side of the table.
+
+select city, sum(sales)
+from superstore_order as so
+Left join `return` as r ON so.Order_ID = r.Order_ID
+where r.Order_ID is null
+group by city;
