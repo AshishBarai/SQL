@@ -1,0 +1,29 @@
+Data Set Link(From Ankit Bansal Youtube): https://drive.google.com/drive/folders/1Dc81McsB4lp1JUIwssDmmOaw6Z7rBK8T
+
+imported the data into MySQL workbench
+data was already cleanded
+
+4. Full outer Join
+
+It returns all the records from both the table
+
+
+select coalesce(so.order_id, r.order_id) as order_id_final, so.order_id, r.order_id, sales
+from superstore_order as so
+full outer join `return` as r ON so.Order_ID = r.Order_ID;
+
+COALESCE : if so.order_id is null then it will return the values of r.order_id,
+          and
+           if so.order_id is not null then it will return the values of so.order_id
+
+IF FULL OUTER JOIN DOES NOT SUPPORT THEN :
+
+can use union of left join and right join
+
+select coalesce(so.order_id, r.order_id) as order_id_final, so.order_id, r.order_id, so.sales
+from superstore_order as so
+left join `return` as r on so.Order_ID = r.Order_ID
+union
+select coalesce(so.order_id, r.order_id) as order_id_final, so.order_id, r.order_id, so.sales
+from superstore_order as so
+right join `return` as r on so.Order_ID = r.Order_ID;
