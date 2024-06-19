@@ -1,0 +1,29 @@
+Q : How to delete duplicate ?
+
+Solution :
+
+WITH cte as
+(
+SELECT *,
+  row_number() over(partition by emp_id order by imp_id) as rn
+  from table_name
+  )
+DELETE
+  FROM CTE
+  WHERE rn > 1
+
+  OR
+
+  WITH cte as
+(
+SELECT *,
+  row_number() over(partition by emp_id order by imp_id) as rn
+  from table_name
+  )
+DELETE
+  FROM table_name
+  WHERE emp_id IN (
+                    Select emp_id
+                    from cte
+                    where rn > 1
+  );
