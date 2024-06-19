@@ -1,0 +1,8 @@
+Q : How to find duplicate in a given table ?
+
+Query : 
+
+Select col1, col2, count(*) AS count 
+FROM table_name
+GROUP BY col1
+having count(*) > 1
