@@ -1,0 +1,13 @@
+Q : What is the difference between Union and union all ?
+
+Union : It returns unique values from the two to multiple tables
+
+select id from employee
+union
+select id from employee
+
+Union All : It returns all rows from the table
+
+select id from employee
+union all
+select id from employee
