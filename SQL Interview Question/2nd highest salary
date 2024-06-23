@@ -1,0 +1,8 @@
+Write a query to find sesond highest salary in each department
+
+select * 
+from 
+(
+select *, dense_rank() over(partition by dept order by salary desc) as rn from employee
+) a
+where rn = 2;
