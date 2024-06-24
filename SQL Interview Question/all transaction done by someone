@@ -1,0 +1,8 @@
+Q : Find all transaction done by particular person
+
+solution : 
+
+select name, sum(salary)
+from employee
+where name = "person_name"
+group by name; 
