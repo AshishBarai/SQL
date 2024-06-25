@@ -1,0 +1,31 @@
+# About Self Join
+
+we use self join if one column is refering to the other column of the same table
+
+inserting table :
+CREATE TABLE semployee
+(
+id INT,
+name varchar (100),
+salary int,
+manager_id int
+);
+
+delete from semployee;
+
+insert into semployee values (1, 'ankit', 10000,4);
+insert into semployee values (2, 'mohit', 15000,5);
+insert into semployee values (3, 'vikas', 10000,4);
+insert into semployee values (4, 'rohit', 5000,2);
+insert into semployee values (5, 'mudit', 12000,6);
+insert into semployee values (6, 'agam', 12000,2);
+insert into semployee values (7, 'sanjay', 9000,2);
+insert into semployee values (8, 'ashish', 5000,2);
+
+Q : if we want to find the employee who's salary greater than manger's salary then we can use this self join
+A : 
+
+select e.id, e.name, m.name as manager_name, e.salary, m.salary as manager_salary
+from semployee as e
+inner join semployee as m on e.manager_id = m.id
+where e.salary > m.salary;
