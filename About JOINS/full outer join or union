@@ -1,0 +1,51 @@
+Q : Find the change is employee status
+
+create table emp_2020
+(
+emp_id int,
+designation varchar(20)
+);
+create table emp_2021
+(
+emp_id int,
+designation varchar(20)
+);
+
+insert into emp_2020 values(1,"Trainee"),(2,"developer"),(3,"senior developer"),(4,"manager");
+insert into emp_2021 values(1,"developer"),(2,"developer"),(3,"manager"),(5,"trainee");
+
+Using FULL OUTER JOIN:
+
+select e0.*, e1.*,
+	case when e0.designation != e1.designation then "pormotion"
+    when   e0.designation = e1.designation then "same position"
+    when e1.designation is null then "resigned"
+    else "new joinee" 
+    end as commit
+from emp_2020 as e0
+full outer join emp_2021 as e1 on e0.emp_id = e1.emp_id
+where isnull(e0.designation,'zzz') = isnull(e1.designation,'xxx');
+
+AND IF FULL OUTER JOIN DOES NOT WORK THEN WE CAN USE UNION
+
+using UNION :
+
+SELECT e0.*, e1.*, 
+       CASE 
+           WHEN e0.designation != e1.designation THEN 'promotion'
+           WHEN e0.designation = e1.designation THEN 'same position'
+           WHEN e1.designation IS NULL THEN 'resigned'
+           ELSE 'new joinee'
+       END AS 2022_designation
+FROM emp_2020 AS e0
+LEFT JOIN emp_2021 AS e1 ON e0.emp_id = e1.emp_id
+UNION
+SELECT e0.*, e1.*, 
+       CASE 
+           WHEN e0.designation != e1.designation THEN 'promotion'
+           WHEN e0.designation = e1.designation THEN 'same position'
+           WHEN e1.designation IS NULL THEN 'resigned'
+           ELSE 'new joinee'
+       END AS 2022_designation
+FROM emp_2020 AS e0
+RIGHT JOIN emp_2021 AS e1 ON e0.emp_id = e1.emp_id;
