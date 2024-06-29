@@ -24,3 +24,17 @@ insert into airbnb_search values
 
 SOLUTION :
 
+with room as 
+(
+select 
+	sum(case when filter_room_types like '%entire%' then 1 else 0 end) as en,
+    sum(case when filter_room_types like '%private%' then 1 else 0 end) as pr,
+    sum(case when filter_room_types like '%shared%' then 1 else 0 end) as sh
+from airbnb_search
+)
+select 'entire room' as value, en as count from room
+union all
+select 'private room' as value, pr as count from room
+union all 
+select 'shared room' as value, sh as count from room
+order by count desc;
