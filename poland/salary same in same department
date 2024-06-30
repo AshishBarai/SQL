@@ -19,3 +19,29 @@ VALUES(101, 'sohan', '3000', '11'),
 (105, 'suresh', '4000', '12'),
 (109, 'mahesh', '7000', '12'),
 (108, 'kamal', '8000', '11');
+
+SOLUTION :
+
+with cte as
+(
+select *,
+count(*) over(partition by dept_id, salary) as sames
+from emp_salary
+)
+select emp_id, name, salary, dept_id
+from cte
+where sames > 1;
+
+
+WITH INNER JOIN :
+
+with dept_salary as 
+(
+select dept_id, salary
+from emp_salary
+group by dept_id, salary
+having count(1) > 1
+)
+select es.*
+from emp_salary as es
+inner join dept_salary as se on es.dept_id = se.dept_id and es.salary = se.salary;
