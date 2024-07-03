@@ -1,0 +1,63 @@
+Q: There are 2 tables, first table has 5 records and second table has 10 records, you can 
+assume any values in each of the tables, how many maximum and minimum records possible in 
+each of inner join, left join, right join and full outer join.
+
+Solution:
+Suppose we have two tables, t1 and t2, with column names id1 and id2 respectively.
+
+For maximum records, let's assume all entries in t1 and t2 are 1. When we perform 
+inner join, left join, right join, and full outer join, the output will be a total 
+of 50 records for each join.
+
+example:
+select * from t1 
+inner join t2 on t1.id = t2.id
+&
+select * from t1 
+left join t2 on t1.id = t2.id
+&
+select * from t1 
+right join t2 on t1.id = t2.id
+&
+select * from t1 
+full outer join t2 on t1.id = t2.id
+
+the output will be total of 50 records for each join.
+
+and 
+
+for minimum records
+
+supose we have two tables t1 and t2 with column name id1 and id2 respectivly
+For maximum records let assume we have all the entry as 1,1,1,1,1 in t1 and 
+for t2 all the entry as 2,2,2,2,2,2,2,2,2,2 then we we do inner join, left join, 
+right join, and full outer join
+
+example:
+select * from t1 
+inner join t2 on t1.id = t2.id
+
+For inner join, there would be zero records as there are no matching records in both 
+tables.
+
+&
+select * from t1 
+left join t2 on t1.id = t2.id
+
+for left join there would be 5 records because all the records will come from left table 
+and no records will come from right table as there are zero matching records
+
+&
+select * from t1 
+right join t2 on t1.id = t2.id
+
+for right join there would be 10 records because all the records will from from right table
+and no records will come from left table as there are zero matching records.
+
+&
+select * from t1 
+full outer join t2 on t1.id = t2.id
+
+and for full outer join or we can use union as full outer join does not work in some SQL database,
+the output would be 15 because all the records from t1 table which is 5 and all the records from 
+t2 table will come which is 10.
