@@ -1,0 +1,130 @@
+# About CRUD part 1 (Create)
+
+CRUD command
+
+C: CREATE
+R: READ
+U: UPDATE
+D: DELETE
+
+About Create Command
+CREATE command is used to add new records or data to a database, specificlly it 
+involves adding new rows to a table
+
+-- # CREATE
+
+CREATE TABLE fish
+(
+	fish_id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100),
+    breed VARCHAR(100),
+    age INT,
+    PRIMARY KEY (fish_id)
+);
+
+1.fish_id INT NOT NULL AUTO_INCREMENT: This column represents the unique identifier for 
+each fish. It is an integer, cannot be null, and will automatically increment with each 
+new record.
+
+2.name VARCHAR(100): This column stores the name of the fish, allowing up to 100 
+characters.
+
+3.breed VARCHAR(100): This column stores the breed of the fish, also allowing up to 100 
+characters.
+
+4.age INT: This column stores the age of the fish as an integer.
+
+5.PRIMARY KEY (fish_id): The fish_id column is designated as the primary key, meaning 
+each value in this column must be unique and cannot be null, ensuring each record in the table can be uniquely identified.
+
+To inser the values:
+INSERT INTO fish(name, breed, age) 
+VALUES
+	('ringo','koi',4),
+    ('cindy','shark',10),
+    ('dumbeldore','shark',11),
+    ('egg','pleco',4),
+    ('misty','koi',13),
+    ('luffy','oscar',9),
+    ('jackson','angel',7);
+
+# About CRUD part 2 (READ)
+
+About the READ Command in CRUD
+The READ command in CRUD operations is used to retrieve data from 
+a database. This operation is typically performed using the SQL SELECT 
+statement, which allows you to fetch data based on specific criteria.
+
+Selecting All Columns:
+To select all columns from a table:
+SELECT * 
+FROM fish
+The * symbol means it selects all the columns in the fish table.
+
+Selecting Specific Columns:
+If you want to select a particular column, you can specify the column name:
+SELECT column_name 
+FROM fish
+
+For example, to select the name and age columns:
+for two columns:
+SELECT name, age 
+FROM fish
+
+Using the WHERE Clause:
+The WHERE clause is used to filter records based on specific conditions.
+
+To select all columns where the age is 4:
+SELECT * 
+FROM fish
+WHERE age = 4;
+
+To select all columns where the name is "egg":
+SELECT * 
+FROM fish
+WHERE name = "egg";
+
+The WHERE clause filters the rows according to the given condition. It is also case
+insensitive, meaning it does not differentiate between uppercase and lowercase letters 
+in string comparisons.
+
+# About CRUD part 3 (UPDATE)
+
+# About the UPDATE Command in CRUD:(Modifiy Existing data)
+UPDATE command is used to modify existing data in table. It allows you to change 
+the values of one or more rows in a table.
+
+# Key componets of the UPDATE command:
+UPDATE: Specifies the table to be updated.
+SET: Specifies the columns and the new values
+WHERE: Specifies which rows to update, without it all rows will be updated.
+
+Example:
+UPDATE fish
+SET breed = "octopus"
+WHERE breed = "koi";
+* UPDATE fish: Specifies the 'fish' table.
+* SET breed = 'octopus': changes the 'breed' to 'octopus'
+* WHERE breed = 'koi': Only rows where 'breed' is 'koi' will be updated
+
+# About CRUD part 4 (DELETE)
+
+# About the DELETE Command in CRUD:(delete Existing data)
+> The DELETE command is used to remove existing data from a table. This operation 
+affects the data within the table, not the structure of the table itself.
+
+# Deleting Specific rows
+for example if we want to delete To delete specific rows based on a condition, we can 
+use the DELETE command with a WHERE clause.
+DELETE 
+FROM fish
+WHERE name = "ringo";
+DELETE FROM fish: Specifies the fish table.
+WHERE name = "ringo": Deletes rows where the name is "ringo".
+
+# To remove all rows from a table while keeping the table structure intact, you omit 
+the WHERE clause.
+DELETE 
+FROM fish;
+This command deletes all the data from the fish table, but the schema (table structure) 
+remains intact.
