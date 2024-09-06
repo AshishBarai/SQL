@@ -4,3 +4,20 @@ SELECT col_1, col_2, COUNT(*) AS Count
 FROM table_name
 GROUP BY col_1
 HAVING Count > 1;
+
+OR
+
+With windows function:
+
+WITH CTE AS
+(
+SELECT *,
+ROW_NUMBER() OVER(PARTITION BY col_1 ORDER BY col_1) AS rn
+FROM table_name
+)
+DELETE FROM table_name
+WHERE col_1 IN (
+                SELECT col_1,
+                        FROM CTE
+                        WHERE rn > 1
+                );
